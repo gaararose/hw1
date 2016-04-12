@@ -220,8 +220,8 @@ void makeParticle(Game *game, int x, int y)
 	Particle *p = &game->particle[game->n];
 	p->s.center.x = x;
 	p->s.center.y = y;
-	p->velocity.y = 1 - rnd() * 0.6;//rnd() - 0.5;
-	p->velocity.x = rnd() - 0.1;//rnd() - 0.5;
+	p->velocity.y = rnd() - 0.5;
+	p->velocity.x = rnd() - 0.5;
 	game->n++;
 }
 
@@ -304,7 +304,7 @@ void movement(Game *game)
 	    //Shape *s;
 	    //s = &game->box;
 	    for (int k = 0; k < 5; k++){
-		Shape *s = &game->box[k];
+		//Shape *s = &game->box[k];
 	    	if (p->s.center.y >= game->box[k].center.y - (game->box[k].height) &&
                 	p->s.center.y <= game->box[k].center.y + (game->box[k].height) &&
 	        	p->s.center.x >= game->box[k].center.x - (game->box[k].width) &&
@@ -334,7 +334,7 @@ void movement(Game *game)
 		memcpy (&game->particle[i], &game->particle[game->n-1],
 			sizeof(Particle));
 		std::cout << "Off screen!" << std::endl;
-		game->particle[i] = game->particle[game->n-1];
+		//game->particle[i] = game->particle[game->n-1];
 		game->n--;
 	    }	
         }
@@ -391,7 +391,7 @@ void render(Game *game)
 	//glPopMatrix();
 
 	//draw all particles here
-	for (int i = 0; i < game->n; i++) { 
+	//for (int i = 0; i < game->n; i++) { 
 		glPushMatrix();
 		//glColor3ub(rnd() * 150, rnd() * 160, rnd() * 220);
 		for (int i = 0; i < game-> n; i++) {
@@ -407,7 +407,8 @@ void render(Game *game)
 	    		glEnd();
 	   		glPopMatrix();
 		}
-	}		
+		//glPopMatrix();
+	//}		
 
 	//texts/fonts
 	glEnable(GL_TEXTURE_2D);
